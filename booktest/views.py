@@ -3,6 +3,8 @@ from booktest.models import *
 from datetime import date
 from django.db.models import F
 from django.db.models import Q, Sum
+from booktest.models import AreaInfo
+
 
 # 查询所有图书并显示
 def index(request):
@@ -45,3 +47,9 @@ def delete(request, id):
     book.delete()
     # 转向到首页
     return redirect('/')
+
+
+# 查询广州市的信息
+def area(request):
+    area = AreaInfo.objects.get(pk=440100)
+    return render(request, 'booktest/area.html', {'area': area})

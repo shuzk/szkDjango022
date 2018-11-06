@@ -21,5 +21,12 @@ class HeroInfo(models.Model):
     hgender = models.BooleanField(default=True)  # 英雄性别
     isDelete = models.BooleanField(default=False)  # 逻辑删除
     # hcomment = models.CharField(max_length=200)#英雄描述信息
-    hcomment = models.CharField(max_length=200, null=True, blank=False)  # hcomment对应的数据库中的字段可以为空，但通过后台管理页面添加英雄信息时hcomment对应的输入框不能为空
+    hcomment = models.CharField(max_length=200, null=True,
+                                blank=False)  # hcomment对应的数据库中的字段可以为空，但通过后台管理页面添加英雄信息时hcomment对应的输入框不能为空
     hbook = models.ForeignKey('BookInfo')  # 英雄与图书表的关系为一对多，所以属性定义在英雄模型类中
+
+
+# 定义地区模型类，存储省、市、区县信息
+class AreaInfo(models.Model):
+    atitle = models.CharField(max_length=30)  # 名称
+    aParent = models.ForeignKey('self', null=True, blank=True)  # 关系
